@@ -3,6 +3,7 @@
 AxonHash is a research and prototyping cryptographic hash function based on ARX (Add-Rotate-Xor) permutation and Merkle tree construction. It is designed for educational, experimental, and benchmarking purposes.
 
 ## Features
+
 - **ARX Permutation:** Modern, efficient mixing using add, rotate, and xor operations.
 - **Merkle Tree Aggregation:** Parallelizable leaf hashing and secure digest aggregation.
 - **Configurable Block Size:** User can set chunk size for flexibility and experimentation.
