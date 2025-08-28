@@ -5,7 +5,7 @@ AxonHash Main Implementation
 This module provides the Axon class for hashing, including ARX permutation, Merkle tree, and utility methods.
 For research and prototyping purposes.
 
-Author: [Your Name]
+Author: Rawbytedev
 Date: 2025-08-25
 """
 
