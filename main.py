@@ -11,9 +11,6 @@ Date: 2025-08-25
 
 import hashlib
 from typing import List, Optional, Any
-from axon import ivfromidentity
-
-
 
 STATE_SIZE = 16  # 512-bit state as 16x 32-bit integers
 
