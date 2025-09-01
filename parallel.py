@@ -5,7 +5,7 @@ AxonHash Parallel and Utility Functions
 This module provides parallelized hashing, permutation, Merkle tree construction, and utility functions
 for the AxonHash cryptographic hash function. It is designed for research and prototyping purposes.
 
-Author: [Your Name]
+Author: Rawbytedev 
 Date: 2025-08-25
 """
 
