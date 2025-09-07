@@ -1,5 +1,13 @@
+"""
+AxonHash Parallel and Utility Functions
+--------------------------------------
+This module provides parallelized hashing, permutation, Merkle tree construction, and utility functions
+for the AxonHash cryptographic hash function. It is designed for research and prototyping purposes.
+
+Author: rawbytedev 
+"""
 import time
-from axon import *
+from utils import *
 from parallel import parallel_leaf_hashing
 
 def profiledigestpipeline(data: bytes, rounds=12, output_len=32):
