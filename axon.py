@@ -5,12 +5,12 @@ AxonHash Main Implementation
 This module provides the Axon class for hashing, including ARX permutation, Merkle tree, and utility methods.
 For research and prototyping purposes.
 
-Author: Rawbytedev
-Date: 2025-08-25
+Author: rawbytedev
 """
 
 import hashlib
 from typing import List, Optional, Any
+
 
 STATE_SIZE = 16  # 512-bit state as 16x 32-bit integers
 
@@ -46,7 +46,7 @@ class Axon:
                 raise ValueError("State must be a list of 16 integers.")
             self.state: List[int] = state
         else:
-            self.state: List[int] = ivfromidentity()
+            self.ividentity()
         self.round: int = round
         self.domain: int = domain
         self.chunks: int = chunks
@@ -125,6 +125,8 @@ class Axon:
         Returns:
             List of byte chunks.
         """
+        if len(self.raw) == 0:
+            return [b'']
         if self.chunks <= 0:
             raise ValueError("Chunk size must be positive.")
         return [self.raw[i:i+self.chunks] for i in range(0, len(self.raw), self.chunks)]
@@ -252,7 +254,7 @@ class Axon:
             nodes = paired
         self.parent = nodes[0].digest
 
-    def ivfromidentity(self, label: str = "AxonHash-1.0") -> None:
+    def ividentity(self, label: str = "AxonHash-1.0") -> None:
         """
         Set the state from a label using SHA-256.
         Args:
@@ -261,5 +263,6 @@ class Axon:
         digest = hashlib.sha256(label.encode()).digest()
         self.state = [int.from_bytes(digest[i:i+4], 'little') for i in range(0, 64, 4)]
 
+
 ##example
-print(Axon("aren".encode()).hexdigest())
+#print(Axon("aren".encode()).hexdigest())
