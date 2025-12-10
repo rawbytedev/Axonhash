@@ -1,0 +1,67 @@
+name: Run Axon Test
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run axon_test.py
+        id: run-test
+        run: |
+          # Run the script and capture output
+          OUTPUT=$(python axon_test.py 2>&1)
+          EXIT_CODE=$?
+          
+          # Save output to environment variable for later use
+          echo "output<<EOF" >> $GITHUB_ENV
+          echo "$OUTPUT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          
+          # Save exit code
+          echo "exit_code=$EXIT_CODE" >> $GITHUB_ENV
+          
+          # Display output in console
+          echo "Script Output:"
+          echo "$OUTPUT"
+          
+          # Exit with the script's exit code
+          exit $EXIT_CODE
+
+      - name: Write to GitHub Action Summary
+        if: always()  # Always run this step even if previous steps fail
+        run: |
+          echo "##  Axon Test Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Add timestamp
+          echo "**Run Date:** $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Add exit code status
+          if [ "${{ env.exit_code }}" -eq 0 ]; then
+            echo "**Status:** ✅ Success" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "**Status:** ❌ Failed (Exit Code: ${{ env.exit_code }})" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 📋 Output:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Format the output in a code block
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "${{ env.output }}" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
