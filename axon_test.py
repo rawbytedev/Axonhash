@@ -202,6 +202,6 @@ def testspeed():
             benchmark_speed(size, rounds=r)
 if __name__ == '__main__':
     run_tests()
-    #bit_distribution_test()
+    bit_distribution_test()
     #generate_nist_randomness_file()
     #testbasichash()
