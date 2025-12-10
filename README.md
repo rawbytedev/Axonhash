@@ -4,10 +4,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/rawbytedev/axonhash)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 
-## Quick Start
-
-```bash
-python axon_test.py
 AxonHash is a research and prototyping cryptographic hash function based on ARX (Add-Rotate-Xor) permutation and Merkle tree construction. It is designed for educational, experimental, and benchmarking purposes.
 
 ## Features
