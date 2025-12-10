@@ -1,7 +1,4 @@
 # AxonHash
-# AxonHash
-
-## Badges
 
 ![Tests](https://github.com/rawbytedev/axonhash/actions/workflows/run_test.yml/badge.svg)
 ![GitHub last commit](https://img.shields.io/github/last-commit/rawbytedev/axonhash)
